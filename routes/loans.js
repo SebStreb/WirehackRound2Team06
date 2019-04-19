@@ -2,31 +2,31 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('GET /');
 });
 
 router.get('/show/:id', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('GET /show/:id');
 });
 
 router.get('/create', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('GET /create');
 });
 
 router.post('/create', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('POST /create');
 });
 
 router.get('/edit/:id', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('GET /edit/:id');
 });
 
 router.put('/edit/:id', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('PUT /edit/:id');
 });
 
 router.delete('/delete/:id', function(req, res, next) {
-  res.send('respond with a resource');
+  res.send('DELETE /delete/:id');
 });
 
 module.exports = router;
