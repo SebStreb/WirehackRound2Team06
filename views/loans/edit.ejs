@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../app/head %>
+    </head>
+
+    <body>
+        <% include ../app/nav %>
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-6">
+                    <form method="PUT" action="/loans/edit">
+                        <fieldset>
+                            <legend>Create loan</legend>
+
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter amount">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="interest_rate">Interest rate</label>
+                                <input type="number" class="form-control" id="interest_rate" name="interest_rate" placeholder="Enter interest">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deadline">Deadline</label>
+                                <input type="date" class="form-control" id="deadline" name="deadline" placeholder="Enter deadline">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <% include ../app/script %>
+    </body>
+</html>
