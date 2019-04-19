@@ -15,15 +15,15 @@ router.get('/users', function(req, res, next) {
     res.render('credits/index');
 });
 
-router.put('/user/create', function(req, res, next) {
+router.post('/user/create', function(req, res, next) {
   const username = req.body.username;
   const password = req.body.password;
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
   user.create(username, password, firstName, lastName, email)
-    .then(() => res.status(200).send());
-    .catch((err) => res.status(500).send());
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
 });
 
 router.post('/edit/:id_user', function(req, res, next) {
