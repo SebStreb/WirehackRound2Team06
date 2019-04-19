@@ -10,16 +10,14 @@ class User {
     const sql = `
       CREATE TABLE IF NOT EXISTS user (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE,
-        password TEXT,
-        firstName TEXT,
-        lastName TEXT,
+        username TEXT UNIQUE NOT NULL,
+        password TEXT NOT NULL,
+        firstName TEXT NOT NULL,
+        lastName TEXT NOT NULL,
         email TEXT
       )
     `
-    return new Promise(function(resolve, reject) {
-      return this.db.run(sql);
-    });
+    return this.db.run(sql);
   }
 
   create(username, password, firstName, lastName, email) {
@@ -31,7 +29,7 @@ class User {
           .then(() => resolve())
           .catch((err) => reject(err));
       });
-    });;
+    });
   }
 
   // update, delete
