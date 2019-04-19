@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../app/head %>
+    </head>
+
+    <body>
+        <% include ../app/nav %>
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Montant</th>
+                                <th scope="col">Taux d'interêt</th>
+                                <th scope="col">Date d'écheance</th>
+                                <th scope="col">Date de création</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td><span class="badge badge-success">Accepter</span></td>
+                                <td>500€</td>
+                                <td>10%</td>
+                                <td>20/10/2011</td>
+                                <td>20/10/2010</td>
+                                <td>
+                                    <button type="button" name="button" class="btn btn-light">Éditer</button>
+                                    <button type="button" name="button" class="btn btn-light">Supprimer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <% include ../app/script %>
+    </body>
+</html>
