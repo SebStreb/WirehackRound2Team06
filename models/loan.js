@@ -22,11 +22,17 @@ class Loan {
   }
 
   create(date_end, date_start, interest_rate, amount, loaner, credits) {
+    console.log("hello")
     const sql = `INSERT INTO loan (date_end, date_start, interest_rate, amount, loaner, credits) VALUES (?, ?, ?, ?, ?, ?)`
     return this.db.run(sql, [date_end, date_start, interest_rate, amount, loaner, credits]);
   }
 
   // update, delete
+
+  all() {
+    const sql = `SELECT * FROM loan`;
+    return this.db.all(sql);
+  }
 
   get(id_loan) {
     const sql = `SELECT * FROM loan WHERE id = ?`;
@@ -35,6 +41,11 @@ class Loan {
 
   from_user(id_user) {
     const sql = `SELECT * FROM loan WHERE loaner = ?`;
+    return this.db.all(sql, [id_user]);
+  }
+
+  to_user(id_user) {
+    const sql = `SELECT * FROM loan WHERE credits = ?`;
     return this.db.all(sql, [id_user]);
   }
 

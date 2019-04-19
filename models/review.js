@@ -27,9 +27,9 @@ class Review {
 
   // update, delete
 
-  find(user) { //Find all review made to an user
+  of(user) { //Find all review made to an user
     const sql = `SELECT * FROM review WHERE to = ?`;
-    return this.db.get(sql, [user]);
+    return this.db.all(sql, [user]);
   }
 
 }

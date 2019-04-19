@@ -3,6 +3,8 @@ const express = require('express');
 const Database = require('../models/db_connect');
 const User = require('../models/user');
 const Loan = require('../models/loan');
+const Review = require('../models/review');
+const Proposal = require('../models/proposal');
 
 const router = express.Router();
 
@@ -15,7 +17,7 @@ const proposal = new Proposal(db);
 // Users
 
 router.get('/users', function(req, res, next) {
-    res.render('credits/index');
+    res.render('NotImplemented');
 });
 
 router.post('/user/create', function(req, res, next) {
@@ -24,11 +26,6 @@ router.post('/user/create', function(req, res, next) {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
-  console.log(username);
-  console.log(password);
-  console.log(firstName);
-  console.log(lastName);
-  console.log(email);
   user.create(username, password, firstName, lastName, email)
     .then(() => res.status(200).send())
     .catch((err) => res.status(500).send(err));
@@ -53,28 +50,37 @@ router.get('/user/:id_user', function(req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
+router.get('/user/name/:username', function(req, res, next) {
+  const username = req.params.username;
+  user.find(username)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
+});
+
 router.get('/user/loan/:id_user', function(req, res, next) {
   loan.from_user(req.params.id_user)
     .then((result) => res.status(200).send(result))
-    .catch((err) => res.status(500).send())
+    .catch((err) => res.status(500).send(err))
 });
 
 router.get('/user/credit/:id_user', function(req, res, next) {
-    res.render('credits/index');
+  loan.to_user(req.params.id_user)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err))
 });
 
-router.get('/user/available/:id_user', function(req, res, next) {
-    res.render('credits/index');
-});
-
-router.get('/user/available/:id_user', function(req, res, next) {
-    res.render('credits/index');
+router.get('/user/proposal/:id_user', function(req, res, next) {
+  proposal.from_user(req.params.id_user)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err))
 });
 
 //Loans
 
 router.get('/loans', function(req, res, next) {
-  res.render('NotImplemented');
+  loan.all()
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
 });
 
 router.get('/loan/:id_loan', function(req, res, next) {
@@ -85,14 +91,14 @@ router.get('/loan/:id_loan', function(req, res, next) {
 });
 
 router.post('/loan/edit/:id', function(req, res, next) {
-    res.render('NotImplemented');
+  res.render('NotImplemented');
 });
 
 router.post('/loan/create', function(req, res, next) {
   const startDate = req.body.startDate;
   const endDate = req.body.endDate;
   const loaner = req.body.loaner;
-  const loaner = req.body.crediter;
+  const crediter = req.body.crediter;
   const amount = req.body.amount;
   const interest = req.body.interest;
   loan.create(endDate, startDate, interest, amount, loaner, crediter)
@@ -103,14 +109,14 @@ router.post('/loan/create', function(req, res, next) {
 // Available money
 
 router.get('/proposals', function(req, res, next) {
-    proposal.all()
-    .then(() => res.status(200).send())
+  proposal.all()
+    .then((result) => res.status(200).send(result))
     .catch((err) => res.status(500).send(err));
 });
 
 router.get('/proposal/:id', function(req, res, next) {
-    proposal.find(req.params.id)
-    .then(() => res.status(200).send())
+  proposal.find(req.params.id)
+    .then((result) => res.status(200).send(result))
     .catch((err) => res.status(500).send(err));
 });
 
@@ -121,6 +127,27 @@ router.post('/proposal/create', function(req, res, next) {
   const interest = req.body.interest;
   proposal.create(user, amount, interest, date)
     .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
+});
+
+router.get('/proposal/best/:amount', function(req, res, next) {
+  const amount = req.params.amount;
+  proposal.best(amount)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
+});
+
+router.post('/proposal/accept', function(req, res, next) {
+  const proposal_id = req.body.proposal_id;
+  const user_id = req.body.user_id;
+  // TODO add amount to accept and dimish proposal by amount
+  const now = new Date();
+  proposal.find(user_id)
+    .then((proposal) => {
+      loan.create(proposal.finalDate, now.toString(), proposal.interest, proposal.amount, proposal.user_id, user_id)
+        .then(() => res.status(200).send())
+        .catch((err) => res.status(500).send(err));
+    })
     .catch((err) => res.status(500).send(err));
 });
 
@@ -147,8 +174,8 @@ router.post('/reviews/create', function(req, res, next) {
 
 router.get('/reviews/all/:user', function(req, res, next) {
   const user = req.params.user;
-  review.find(user)
-    .then(() => res.status(200).send())
+  review.of(user)
+    .then((result) => res.status(200).send(result))
     .catch((err) => res.status(500).send(err));
 });
 
