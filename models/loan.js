@@ -8,12 +8,12 @@ class Loan {
     const sql = `
       CREATE TABLE IF NOT EXISTS loan (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        date_start TEXT,
-        date_end TEXT,
-        interest_rate INTEGER,
-        amount REAL,
-        loaner INTEGER,
-        credits INTEGER,
+        date_start TEXT NOT NULL,
+        date_end TEXT NOT NULL,
+        interest_rate INTEGER NOT NULL,
+        amount REAL NOT NULL,
+        loaner INTEGER NOT NULL,
+        credits INTEGER NOT NULL,
         FOREIGN KEY(loaner) REFERENCES user(id),
         FOREIGN KEY(credits) REFERENCES user(id)
 
