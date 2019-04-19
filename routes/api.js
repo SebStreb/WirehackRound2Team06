@@ -170,9 +170,9 @@ router.post('/reviews/create', function(req, res, next) {
   const to = req.body.toId;
   const rating = req.body.rating;
   const comment = req.body.comment;
-  review.create(date, from, to, rating, comment)
+  review.create(date.toString(), from, to, rating, comment)
     .then(() => res.status(200).send())
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => {console.log(err);res.status(500).send(err)});
 });
 
 router.get('/reviews/all/:user', function(req, res, next) {

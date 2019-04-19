@@ -21,14 +21,14 @@ class Review {
   }
 
   create(date, from, to, rating, comment) {
-    const sql = `INSERT INTO review (date, from, to, rating, comment) VALUES (?, ?, ?, ?, ?)`
+    const sql = `INSERT INTO review (date, user_from, user_to, rating, comment) VALUES (?, ?, ?, ?, ?)`
     return this.db.run(sql, [date, from, to, rating, comment]);
   }
 
   // update, delete
 
   of(user) { //Find all review made to an user
-    const sql = `SELECT * FROM review WHERE to = ?`;
+    const sql = `SELECT * FROM review WHERE user_to = ?`;
     return this.db.all(sql, [user]);
   }
 
