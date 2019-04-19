@@ -1,0 +1,31 @@
+# Users
+
+/api/users    GET, get a list of users
+/api/user/create    POST, create a user
+/api/user/edit/:id    POST, edit a user
+/api/user/:id    GET, get information about a user
+/api/user/loan/:id_user    GET, get a list of loan of a user
+/api/user/credit/:id_user    GET, get a list of credit of a user
+/api/user/available/:id_user    GET, get a list of offer of a user
+/api/user/reviews/:id_user    GET, get a list of reviews from a user
+
+# Loan
+
+/api/loans    GET, get a list of loans
+/api/loan/:id    GET, get information about a loan
+/api/loan/edit/:id    POST, modify a loan
+/api/loan/create    POST, create a loan
+
+# Available money
+
+/api/availables    GET, get a list of available offer
+/api/available/:id    GET, get information about a offer
+/api/available/create    POST, create a available loan
+/api/available/edit/:id    POST, modify a offer
+/api/available/delete/:id    POST, delete a offer
+    
+#Reviews
+
+/api/reviews/create    POST, create a reviews
+/api/review/edit/:id    POST, edit a review
+/api/review/remove/:id  POST, remove a reviews
