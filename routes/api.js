@@ -74,10 +74,19 @@ router.delete('/available/delete/:id', function(req, res, next) {
     res.render('credits/index');
 });
 
+// Reviews
 
-
-
-router.get('/user/available/:id_user', function(req, res, next) {
+router.put('/reviews/create', function(req, res, next) {
     res.render('credits/index');
+});
+
+router.post('/reviews/edit/:id', function(req, res, next) {
+    res.render('credits/index');
+});
+
+router.delete('/reviews/delete/:id', function(req, res, next) {
+    res.render('credits/index');
+});
+
 
 module.exports = router;
