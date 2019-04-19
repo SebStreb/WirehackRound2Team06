@@ -33,6 +33,11 @@ class Loan {
     return this.db.get(sql, [id_loan]);
   }
 
+  from_user(id_user) {
+    const sql = `SELECT * FROM loan WHERE loaner = ?`;
+    return this.db.all(sql, [id_user]);
+  }
+
 }
 
 module.exports = Loan;
