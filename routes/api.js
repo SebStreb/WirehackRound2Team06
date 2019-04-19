@@ -3,6 +3,8 @@ const express = require('express');
 const Database = require('../models/db_connect');
 const User = require('../models/user');
 const Loan = require('../models/loan');
+const Review = require('../models/review');
+const Proposal = require('../models/proposal');
 
 const router = express.Router();
 
