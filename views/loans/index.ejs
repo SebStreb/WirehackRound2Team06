@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../app/head %>
+    </head>
+
+    <body>
+        <% include ../app/nav %>
+
+        <div class="container-fluid">
+            <div class="row justify-content-md-center">
+                <div class="col-12">
+                    <h1>Loans</h1>
+
+                    <a href="/loans/create" class="btn btn-primary">Add loan</a>
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Status</th>
+                                <th scope="col">Montant</th>
+                                <th scope="col">Taux d'interêt</th>
+                                <th scope="col">Date d'écheance</th>
+                                <th scope="col">Date de création</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td><span class="badge badge-success">Accepté</span></td>
+                                <td>500€</td>
+                                <td>10%</td>
+                                <td>20/10/2011</td>
+                                <td>20/10/2010</td>
+                                <td>
+                                    <button type="button" name="button" class="btn btn-info">Éditer</button>
+                                    <button type="button" name="button" class="btn btn-danger">Supprimer</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="badge badge-danger">Expiré</span></td>
+                                <td>600€</td>
+                                <td>10%</td>
+                                <td>20/10/2011</td>
+                                <td>20/10/2010</td>
+                                <td>
+                                    <button type="button" name="button" class="btn btn-info">Éditer</button>
+                                    <button type="button" name="button" class="btn btn-danger">Supprimer</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="badge badge-danger">Expiré</span></td>
+                                <td>700€</td>
+                                <td>10%</td>
+                                <td>20/10/2011</td>
+                                <td>20/10/2010</td>
+                                <td>
+                                    <button type="button" name="button" class="btn btn-info">Éditer</button>
+                                    <button type="button" name="button" class="btn btn-danger">Supprimer</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="badge badge-warning">En attente</span></td>
+                                <td>100€</td>
+                                <td>10%</td>
+                                <td>20/10/2020</td>
+                                <td>20/10/2010</td>
+                                <td>
+                                    <button type="button" name="button" class="btn btn-info">Éditer</button>
+                                    <button type="button" name="button" class="btn btn-danger">Supprimer</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="badge badge-warning">En attente</span></td>
+                                <td>200€</td>
+                                <td>10%</td>
+                                <td>20/10/2020</td>
+                                <td>20/10/2010</td>
+                                <td>
+                                    <button type="button" name="button" class="btn btn-info">Éditer</button>
+                                    <button type="button" name="button" class="btn btn-danger">Supprimer</button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td><span class="badge badge-warning">En attente</span></td>
+                                <td>500€</td>
+                                <td>10%</td>
+                                <td>20/10/2020</td>
+                                <td>20/10/2010</td>
+                                <td>
+                                    <button type="button" name="button" class="btn btn-info">Éditer</button>
+                                    <button type="button" name="button" class="btn btn-danger">Supprimer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <% include ../app/script %>
+    </body>
+</html>
