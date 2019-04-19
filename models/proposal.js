@@ -30,6 +30,11 @@ class Proposal {
     return this.db.get(sql, [id]);
   }
 
+  all(){
+    const sql = `SELECT * FROM proposal`;
+    return this.db.get(sql, []);
+  }
+
   best(amount) {
     const sql = `SELECT * FROM proposal WHERE amount < ? ORDER BY interest`;
     return this.db.all(sql, [username]);

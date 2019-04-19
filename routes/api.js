@@ -9,8 +9,11 @@ const router = express.Router();
 const db = new Database('./db.sqlite');
 const user = new User(db);
 const loan = new Loan(db);
+const review = new Review(db);
+const proposal = new Proposal(db);
 
 // Users
+
 router.get('/users', function(req, res, next) {
     res.render('credits/index');
 });
@@ -21,18 +24,33 @@ router.post('/user/create', function(req, res, next) {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
+  console.log(username);
+  console.log(password);
+  console.log(firstName);
+  console.log(lastName);
+  console.log(email);
   user.create(username, password, firstName, lastName, email)
     .then(() => res.status(200).send())
     .catch((err) => res.status(500).send(err));
 });
 
+router.get('/user/connect', function(req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+  user.connect(username, password)
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
+});
+
 router.post('/edit/:id_user', function(req, res, next) {
-  //req.params.id_user
-  //res.render('credits/index');
+  res.render('NotImplemented');
 });
 
 router.get('/user/:id_user', function(req, res, next) {
-  //res.render('credits/index');
+  const id_user = req.params.id_user;
+  user.get(id_user)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
 });
 
 router.get('/user/loan/:id_user', function(req, res, next) {
@@ -53,57 +71,93 @@ router.get('/user/available/:id_user', function(req, res, next) {
     res.render('credits/index');
 });
 
-//Loan
+//Loans
+
 router.get('/loans', function(req, res, next) {
-    res.render('credits/index');
+  res.render('NotImplemented');
 });
 
 router.get('/loan/:id_loan', function(req, res, next) {
-    res.render('credits/index');
+  const id_loan = req.params.id_loan;
+  loan.get(id_loan)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
 });
 
 router.post('/loan/edit/:id', function(req, res, next) {
-    res.render('credits/index');
+    res.render('NotImplemented');
 });
 
-router.put('/loan/create', function(req, res, next) {
-    res.render('credits/index');
+router.post('/loan/create', function(req, res, next) {
+  const startDate = req.body.startDate;
+  const endDate = req.body.endDate;
+  const loaner = req.body.loaner;
+  const loaner = req.body.crediter;
+  const amount = req.body.amount;
+  const interest = req.body.interest;
+  loan.create(endDate, startDate, interest, amount, loaner, crediter)
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
 });
 
 // Available money
 
-router.get('/availables', function(req, res, next) {
-    res.render('credits/index');
+router.get('/proposals', function(req, res, next) {
+    proposal.all()
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
 });
 
-router.get('/available/:id', function(req, res, next) {
-    res.render('credits/index');
+router.get('/proposal/:id', function(req, res, next) {
+    proposal.find(req.params.id)
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
 });
 
-router.put('/available/create', function(req, res, next) {
-    res.render('credits/index');
+router.post('/proposal/create', function(req, res, next) {
+  const date = req.body.endDate;
+  const user = req.body.userId;
+  const amount = req.body.amount;
+  const interest = req.body.interest;
+  proposal.create(user, amount, interest, date)
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
 });
 
-router.post('/available/edit/:id', function(req, res, next) {
-    res.render('credits/index');
+router.post('/proposal/edit/:id', function(req, res, next) {
+    res.render('NotImplemented');
 });
 
-router.delete('/available/delete/:id', function(req, res, next) {
-    res.render('credits/index');
+router.delete('/proposal/delete/:id', function(req, res, next) {
+    res.render('NotImplemented');
 });
 
 // Reviews
 
-router.put('/reviews/create', function(req, res, next) {
-    res.render('credits/index');
+router.post('/reviews/create', function(req, res, next) {
+  const date = Date.now();
+  const from = req.body.fromId;
+  const to = req.body.toId;
+  const rating = req.body.rating;
+  const comment = req.body.comment;
+  review.create(date, from, to, rating, comment)
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
+});
+
+router.get('/reviews/all/:user', function(req, res, next) {
+  const user = req.params.user;
+  review.find(user)
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
 });
 
 router.post('/reviews/edit/:id', function(req, res, next) {
-    res.render('credits/index');
+    res.render('NotImplemented');
 });
 
 router.delete('/reviews/delete/:id', function(req, res, next) {
-    res.render('credits/index');
+    res.render('NotImplemented');
 });
 
 

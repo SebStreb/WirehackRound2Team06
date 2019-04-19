@@ -28,7 +28,7 @@ class Loan {
 
   // update, delete
 
-  find(id_loan) {
+  get(id_loan) {
     const sql = `SELECT * FROM loan WHERE id = ?`;
     return this.db.get(sql, [id_loan]);
   }
