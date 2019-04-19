@@ -29,14 +29,17 @@ router.post('/user/create', function(req, res, next) {
   user.create(username, password, firstName, lastName, email)
     .then(() => res.status(200).send())
     .catch((err) => res.status(500).send(err));
+  res.redirect('/')
 });
 
-router.get('/user/connect', function(req, res) {
+router.post('/user/connect', function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
+  console.log(username)
+  console.log(password)
   user.connect(username, password)
-    .then(() => res.status(200).send())
-    .catch((err) => res.status(500).send(err));
+    .then(() => res.redirect('/'))
+    .catch((err) => res.status(500).send(err)) //TODO error
 });
 
 router.post('/edit/:id_user', function(req, res, next) {
