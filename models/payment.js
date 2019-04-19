@@ -12,12 +12,9 @@ class Payment {
         amount REAL NOT NULL,
         id_loan INTEGER NOT NULL,
         FOREIGN KEY(id_loan) REFERENCES loan(id)
-
       )
     `
-    return new Promise(function(resolve, reject) {
-      return this.db.run(sql);
-    });
+    return this.db.run(sql);
   }
 
   create(date, amount, id_loan) {

@@ -14,14 +14,11 @@ class Loan {
         amount REAL NOT NULL,
         loaner INTEGER NOT NULL,
         credits INTEGER NOT NULL,
-        FOREIGN KEY(loaner) REFERENCES user(id),
-        FOREIGN KEY(credits) REFERENCES user(id)
-
+        FOREIGN KEY (loaner) REFERENCES user(id),
+        FOREIGN KEY (credits) REFERENCES user(id)
       )
     `
-    return new Promise(function(resolve, reject) {
-      return this.db.run(sql);
-    });
+    return this.db.run(sql);
   }
 
   create(date_end, date_start, interest_rate, amount, loaner, credits) {
