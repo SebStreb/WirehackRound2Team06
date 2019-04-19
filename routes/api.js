@@ -48,11 +48,33 @@ router.post('/loan/edit/:id', function(req, res, next) {
     res.render('credits/index');
 });
 
-router.put('/loan/:create', function(req, res, next) {
+router.put('/loan/create', function(req, res, next) {
     res.render('credits/index');
 });
 
-// 
+// Available money
+
+router.get('/availables', function(req, res, next) {
+    res.render('credits/index');
+});
+
+router.get('/available/:id', function(req, res, next) {
+    res.render('credits/index');
+});
+
+router.put('/available/create', function(req, res, next) {
+    res.render('credits/index');
+});
+
+router.post('/available/edit/:id', function(req, res, next) {
+    res.render('credits/index');
+});
+
+router.delete('/available/delete/:id', function(req, res, next) {
+    res.render('credits/index');
+});
+
+
 
 
 router.get('/user/available/:id_user', function(req, res, next) {
