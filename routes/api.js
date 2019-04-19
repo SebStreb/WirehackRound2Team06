@@ -26,22 +26,20 @@ router.post('/user/create', function(req, res, next) {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
-  console.log(username);
-  console.log(password);
-  console.log(firstName);
-  console.log(lastName);
-  console.log(email);
   user.create(username, password, firstName, lastName, email)
     .then(() => res.status(200).send())
     .catch((err) => res.status(500).send(err));
+  res.redirect('/')
 });
 
-router.get('/user/connect', function(req, res) {
+router.post('/user/connect', function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
+  console.log(username)
+  console.log(password)
   user.connect(username, password)
-    .then(() => res.status(200).send())
-    .catch((err) => res.status(500).send(err));
+    .then(() => res.redirect('/'))
+    .catch((err) => res.status(500).send(err)) //TODO error
 });
 
 router.post('/edit/:id_user', function(req, res, next) {
@@ -112,7 +110,7 @@ router.get('/proposals', function(req, res, next) {
 
 router.get('/proposal/:id', function(req, res, next) {
     proposal.find(req.params.id)
-    .then(() => res.status(200).send())
+    .then((result) => res.status(200).send(result))
     .catch((err) => res.status(500).send(err));
 });
 
@@ -150,7 +148,7 @@ router.post('/reviews/create', function(req, res, next) {
 router.get('/reviews/all/:user', function(req, res, next) {
   const user = req.params.user;
   review.find(user)
-    .then(() => res.status(200).send())
+    .then((result) => res.status(200).send(result))
     .catch((err) => res.status(500).send(err));
 });
 
