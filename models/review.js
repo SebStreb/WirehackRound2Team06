@@ -37,4 +37,4 @@ class Review {
 
 }
 
-module.exports = Payment;
+module.exports = Review;
