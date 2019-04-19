@@ -9,18 +9,15 @@ class Review {
       CREATE TABLE IF NOT EXISTS review (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         date TEXT NOT NULL,
-        from TEXT NOT NULL,
-        to TEXT NOT NULL,
+        user_from TEXT NOT NULL,
+        user_to TEXT NOT NULL,
         rating INTEGER NOT NULL,
         comment TEXT,
-        FOREIGN KEY(from) REFERENCES user(id),
-        FOREIGN KEY(to) REFERENCES user(id)
-
+        FOREIGN KEY (user_from) REFERENCES user(id),
+        FOREIGN KEY (user_to) REFERENCES user(id)
       )
     `
-    return new Promise(function(resolve, reject) {
-      return this.db.run(sql);
-    });
+    return this.db.run(sql);
   }
 
   create(date, from, to, rating, comment) {

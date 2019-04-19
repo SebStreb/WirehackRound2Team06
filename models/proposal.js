@@ -12,7 +12,7 @@ class Proposal {
         amount REAL NOT NULL,
         interest INTEGER NOT NULL,
         finalDate TEXT NOT NULL,
-        FOREIGN KEY user_id REFERENCES user(id)
+        FOREIGN KEY (user_id) REFERENCES user(id)
       )
     `
     return this.db.run(sql);
