@@ -1,3 +1,5 @@
+const passwordUtils = require('../utils/password_utils');
+
 class User {
 
   constructor(db) {
@@ -21,8 +23,15 @@ class User {
   }
 
   create(username, password, firstName, lastName, email) {
-    const sql = `INSERT INTO user (username, password, firstName, lastName, email) VALUES (?, ?, ?, ?, ?)`
-    return this.db.run(sql, [username, password, firstName, lastName, email]);
+    return new Promise(function(resolve, reject) {
+      passwordUtils.cryptPassword(password, (err, hash) => {
+        if (err) return reject("Could not hash password: " + err.message);
+        const sql = `INSERT INTO user (username, password, firstName, lastName, email) VALUES (?, ?, ?, ?, ?)`
+        this.db.run(sql, [username, hash, firstName, lastName, email])
+          .then(() => resolve())
+          .catch((err) => reject(err));
+      });
+    });;
   }
 
   // update, delete
@@ -37,9 +46,11 @@ class User {
     return new Promise(function(resolve, reject) {
       this.db.get(sql, [username])
         .then((result) => {
-          if (result.password != password)
-            reject("Wrong password for user " + username);
-          resolve();
+          passwordUtils.comparePassword(password, result.password, (err, match) => {
+            if (err) return reject("Could not compare password: " + err.message);
+            else if (!match) return reject("Wrong password for user: " + username);
+            else return resolve();
+          });
         })
         .catch((err) => reject("Could not find user " + username));
     });
