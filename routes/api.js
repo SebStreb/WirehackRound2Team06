@@ -92,7 +92,7 @@ router.post('/loan/create', function(req, res, next) {
   const startDate = req.body.startDate;
   const endDate = req.body.endDate;
   const loaner = req.body.loaner;
-  const loaner = req.body.crediter;
+  const crediter = req.body.crediter;
   const amount = req.body.amount;
   const interest = req.body.interest;
   loan.create(endDate, startDate, interest, amount, loaner, crediter)
