@@ -1,5 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+
+const Database = require('../models/db_connect');
+const User = require('../models/user');
+const Loan = require('../models/loan');
+
+const router = express.Router();
+
+const db = new Database('../db.sqlite');
+const user = new User(db);
+const loan = new Loan(db);
 
 // Users
 router.get('/users', function(req, res, next) {
@@ -7,20 +16,29 @@ router.get('/users', function(req, res, next) {
 });
 
 router.put('/user/create', function(req, res, next) {
-    res.render('credits/index');
+  const username = req.body.username;
+  const password = req.body.password;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  user.create(username, password, firstName, lastName, email)
+    .then(() => res.status(200).send());
+    .catch((err) => res.status(500).send());
 });
 
 router.post('/edit/:id_user', function(req, res, next) {
-    //req.params.id_user
-    res.render('credits/index');
+  //req.params.id_user
+  //res.render('credits/index');
 });
 
 router.get('/user/:id_user', function(req, res, next) {
-    res.render('credits/index');
+  //res.render('credits/index');
 });
 
 router.get('/user/loan/:id_user', function(req, res, next) {
-    res.render('credits/index');
+  loan.from_user(req.params.id_user)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send())
 });
 
 router.get('/user/credit/:id_user', function(req, res, next) {
