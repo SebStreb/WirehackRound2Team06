@@ -21,7 +21,7 @@ class User {
   }
 
   create(username, password, firstName, lastName, email) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       passwordUtils.cryptPassword(password, (err, hash) => {
         if (err) return reject("Could not hash password: " + err.message);
         const sql = `INSERT INTO user (username, password, firstName, lastName, email) VALUES (?, ?, ?, ?, ?)`
@@ -41,7 +41,7 @@ class User {
 
   connect(username, password) {
     const sql = `SELECT * FROM user WHERE username = ?`;
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       this.db.get(sql, [username])
         .then((result) => {
           passwordUtils.comparePassword(password, result.password, (err, match) => {
