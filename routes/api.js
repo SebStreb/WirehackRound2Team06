@@ -6,7 +6,7 @@ const Loan = require('../models/loan');
 
 const router = express.Router();
 
-const db = new Database('../db.sqlite');
+const db = new Database('./db.sqlite');
 const user = new User(db);
 const loan = new Loan(db);
 
