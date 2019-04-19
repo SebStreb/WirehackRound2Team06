@@ -11,6 +11,7 @@ const user = new User(db);
 const loan = new Loan(db);
 
 // Users
+
 router.get('/users', function(req, res, next) {
     res.render('credits/index');
 });
@@ -21,18 +22,33 @@ router.post('/user/create', function(req, res, next) {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
+  console.log(username);
+  console.log(password);
+  console.log(firstName);
+  console.log(lastName);
+  console.log(email);
   user.create(username, password, firstName, lastName, email)
     .then(() => res.status(200).send())
     .catch((err) => res.status(500).send(err));
 });
 
+router.get('/user/connect', function(req, res) {
+  const username = req.body.username;
+  const password = req.body.password;
+  user.connect(username, password)
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
+});
+
 router.post('/edit/:id_user', function(req, res, next) {
-  //req.params.id_user
-  //res.render('credits/index');
+  res.render('NotImplemented');
 });
 
 router.get('/user/:id_user', function(req, res, next) {
-  //res.render('credits/index');
+  const id_user = req.params.id_user;
+  user.get(id_user)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
 });
 
 router.get('/user/loan/:id_user', function(req, res, next) {
@@ -53,13 +69,17 @@ router.get('/user/available/:id_user', function(req, res, next) {
     res.render('credits/index');
 });
 
-//Loan
+//Loans
+
 router.get('/loans', function(req, res, next) {
-    res.render('credits/index');
+  res.render('NotImplemented');
 });
 
 router.get('/loan/:id_loan', function(req, res, next) {
-    res.render('credits/index');
+  const id_loan = req.params.id_loan;
+  loan.get(id_loan)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
 });
 
 router.post('/loan/edit/:id', function(req, res, next) {

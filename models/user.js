@@ -34,6 +34,11 @@ class User {
 
   // update, delete
 
+  get(id) {
+    const sql = `SELECT * FROM user WHERE id = ?`;
+    return this.db.get(sql, [id]);
+  }
+
   find(username) {
     const sql = `SELECT * FROM user WHERE username = ?`;
     return this.db.get(sql, [username]);
