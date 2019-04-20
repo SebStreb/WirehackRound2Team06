@@ -44,6 +44,11 @@ class Project {
     return this.db.all(sql, [id_user]);
   }
 
+  del(id) {
+    const sql = `DELETE FROM project WHERE id = ?`;
+    return this.db.run(sql, [id]);
+  }
+
 }
 
 module.exports = Project;

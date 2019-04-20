@@ -45,6 +45,11 @@ class Proposal {
     return this.db.all(sql, [user_id]);
   }
 
+  del(id) {
+    const sql = `DELETE FROM proposal WHERE id = ?`;
+    return this.db.run(sql, [id]);
+  }
+
 }
 
 module.exports = Proposal;

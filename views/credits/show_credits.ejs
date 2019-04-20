@@ -35,7 +35,9 @@
                                 <td><%= credits[i].interest %>%</td>
                                 <td><%= credits[i].finalDate %></td>
                                 <td>
-                                    <button type="button" name="button" class="btn btn-info">Apply</button>
+                                    <form id="form" method="get" action="/credits/apply/<%= credits[i].id %>">
+                                      <button type="submit" name="button" class="btn btn-info">Apply</button>
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
@@ -46,6 +48,11 @@
             </div>
         </div>
 
+        <script>
+          function apply(id) {
+            const url = "/"
+          }
+        </script>
         <% include ../app/script %>
     </body>
 </html>
