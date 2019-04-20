@@ -40,7 +40,15 @@
                             <h5 class="card-title"><%= projects[i].title %></h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 <span class="badge badge-secondary"><%= projects[i].demand %>€</span>
-                                <span class="badge badge-success">Low risk</span>
+                                <% if(projects[i].risk == 1) {%>
+                                    <span class="badge badge-success">Low risk</span>
+                                <% } %>
+                                <% if(projects[i].risk == 2) {%>
+                                    <span class="badge badge-success">Medium risk</span>
+                                <% } %>
+                                <% if(projects[i].risk == 3) {%>
+                                    <span class="badge badge-failure">High risk</span>
+                                <% } %>
                             </h6>
 
                             <p class="card-text"><%= projects[i].description %></p>

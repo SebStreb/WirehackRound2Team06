@@ -221,7 +221,7 @@ router.post('/project/create', function(req, res, next) {
   const title = req.body.title;
   project.create(demand, description, image_url, project_url, user, title)
     .then(() => res.redirect('/projects'))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => {console.log(err);res.status(500).send(err)});
 });
 
 module.exports = router;

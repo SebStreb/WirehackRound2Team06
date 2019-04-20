@@ -14,6 +14,7 @@ class Project {
         image_url TEXT NOT NULL,
         project_url TEXT,
         user_id INTEGER NOT NULL,
+        risk INTEGER NOT NULL,
         FOREIGN KEY (user_id) REFERENCES user(id)
       )
     `
@@ -21,8 +22,9 @@ class Project {
   }
 
   create(demand, description, image_url, project_url, user_id, title) {
-    const sql = `INSERT INTO project (demand, description, image_url, project_url, user_id, title) VALUES (?, ?, ?, ?, ?, ?)`
-    return this.db.run(sql, [demand, description, image_url, project_url, user_id]);
+    const risk = (Math.random() * (3) ) << 0;
+    const sql = `INSERT INTO project (demand, description, image_url, project_url, user_id, title, risk) VALUES (?, ?, ?, ?, ?, ?, ?)`
+    return this.db.run(sql, [demand, description, image_url, project_url, user_id, title, risk]);
   }
 
   // update, delete
