@@ -56,9 +56,9 @@ router.get('/list', function(req, res, next) {
 
 router.get('/invest/:project_id', function(req, res, next) {
   const project_id = req.params.project_id;
-  project.find(project_id)
+  project.get(project_id)
     .then((project) => {
-      res.render('credits/apply', { project: project })
+      res.render('projects/invest', { project: project })
     })
     .catch((err) => res.status(500).send(err));
 });
@@ -79,7 +79,7 @@ router.post('/invest', function(req, res, next) {
         .then(() => res.redirect('/loans'))
         .catch((err) => res.status(500).send(err));
     })
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => {console.error(error);res.status(500).send(err)});
 });
 
 module.exports = router;
