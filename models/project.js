@@ -22,7 +22,7 @@ class Project {
 
   create(demand, description, image_url, project_url, user_id, title) {
     const sql = `INSERT INTO project (demand, description, image_url, project_url, user_id, title) VALUES (?, ?, ?, ?, ?, ?)`
-    return this.db.run(sql, [demand, description, image_url, project_url, user_id]);
+    return this.db.run(sql, [demand, description, image_url, project_url, user_id, title]);
   }
 
   // update, delete

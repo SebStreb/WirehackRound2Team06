@@ -24,21 +24,23 @@ router.get('/create', function(req, res, next) {
 });
 
 router.get('/list', function(req, res, next) {
-    if(!req.user)
+    if (!req.user)
         res.render("Please connect")
-    request('http://localhost:3000/api//project/all/'+req.user.id, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-        console.log(response.body)
-        res.render('projects/list', {
-            projects:JSON.parse(response.body),
-            user:req.user
-        });
-     }
 
-     if(error){
-        console.log(error)
-     }
-    })
+    request('http://localhost:3000/api/project/all/' + req.user.id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(response.body)
+
+            res.render('projects/list', {
+                projects: JSON.parse(response.body),
+                user: req.user
+            });
+         }
+
+         if(error){
+            console.log(error)
+         }
+    });
 });
 
 module.exports = router;
