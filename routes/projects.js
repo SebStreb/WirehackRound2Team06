@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
     if (!error && response.statusCode == 200) {
     	console.log(response.body)
         res.render('projects/index', {
-        	credits:JSON.parse(response.body),
+        	projects:JSON.parse(response.body),
         	user:req.user
         });
      }
