@@ -3,10 +3,9 @@ var router = express.Router();
 var request = require('request');
 
 router.get('/', function(req, res, next) {
-	console.log("Trying")
 	if(!req.user)
 		res.render("Please connect")
-	request('http://localhost:3000/api/userProposal/'+req.user.id, function (error, response, body) {
+	request('http://localhost:3000/api//user/loan/'+req.user.id, function (error, response, body) {
     if (!error && response.statusCode == 200) {
     	console.log(response.body)
         res.render('loans/index', {
