@@ -14,6 +14,7 @@ var usersRouter = require('./routes/users');
 var loansRouter = require('./routes/loans');
 var creditsRouter = require('./routes/credits');
 var projectsRouter = require('./routes/projects');
+var investmentsRouter = require('./routes/investments');
 var authRouter = require('./routes/auth');
 var apiRouter = require('./routes/api');
 
@@ -42,6 +43,7 @@ app.use('/users', usersRouter);
 app.use('/loans', loansRouter);
 app.use('/credits', creditsRouter);
 app.use('/projects', projectsRouter);
+app.use('/investments', investmentsRouter);
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
 
