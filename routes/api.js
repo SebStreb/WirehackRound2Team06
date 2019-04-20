@@ -196,7 +196,7 @@ router.delete('/reviews/delete/:id', function(req, res, next) {
 router.get('/projects', function(req, res, next) {
   project.all()
     .then((result) => res.status(200).send(result))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => {console.log(err); res.status(500).send(err)});
 });
 
 router.get('/project/:project_id', function(req, res, next) {
@@ -218,8 +218,8 @@ router.post('/project/create', function(req, res, next) {
   const image_url = req.body.image;
   const project_url = req.body.url;
   const user = req.body.user_id;
-  review.create(demand, description, image_url, project_url, user)
-    .then(() => res.status(200).send())
+  project.create(demand, description, image_url, project_url, user)
+    .then(() => res.redirect('/projects'))
     .catch((err) => res.status(500).send(err));
 });
 
