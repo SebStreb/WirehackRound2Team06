@@ -112,7 +112,7 @@ router.get('/proposal/:id', function(req, res, next) {
     .catch((err) => res.status(500).send(err));
 });
 
-router.get('/proposal/:user', function(req, res, next) {
+router.get('/userProposal/:user', function(req, res, next) {
   proposal.from_user(req.params.user)
     .then((result) => res.status(200).send(result))
     .catch((err) => res.status(500).send(err));

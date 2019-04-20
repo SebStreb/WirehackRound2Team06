@@ -4,9 +4,15 @@ var request = require('request');
 
 router.get('/', function(req, res, next) {
 	console.log("Trying")
-	request('http://localhost:3000/api/proposal/'+req.user.id, function (error, response, body) {
+	if(!req.user)
+		res.render("Please connect")
+	request('http://localhost:3000/api/userProposal/'+req.user.id, function (error, response, body) {
     if (!error && response.statusCode == 200) {
-        res.render('loans/index', {proposals:response.body});
+    	console.log(response.body)
+        res.render('loans/index', {
+        	proposals:JSON.parse(response.body),
+        	user:req.user
+        });
      }
      if(error){
      	console.log(error)
