@@ -13,6 +13,10 @@
                     <h1>
                         Credits
                     </h1>
+                    <% if(credits.length == 0) {%>
+                        <p> Message </p>
+                    <% } %>
+                    <% if(credits.length != 0) {%>
 
                     <table class="table table-hover">
                         <thead>
@@ -26,55 +30,18 @@
                         </thead>
 
                         <tbody>
+                            <% for(var i=0; i < credits.length; i++) {%>
                             <tr>
-                                <td>500€</td>
-                                <td>10%</td>
-                                <td>20/10/2011</td>
-                                <td>20/10/2010</td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td>600€</td>
-                                <td>10%</td>
-                                <td>20/10/2011</td>
-                                <td>20/10/2010</td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td>700€</td>
-                                <td>10%</td>
-                                <td>20/10/2011</td>
-                                <td>20/10/2010</td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td>100€</td>
-                                <td>10%</td>
-                                <td>20/10/2020</td>
-                                <td>20/10/2010</td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td>200€</td>
-                                <td>10%</td>
-                                <td>20/10/2020</td>
-                                <td>20/10/2010</td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td>500€</td>
-                                <td>10%</td>
-                                <td>20/10/2020</td>
-                                <td>20/10/2010</td>
+                                <td><%= credits[i].amount %>€</td>
+                                <td><%= credits[i].interest_rate %>%</td>
+                                <td><%= credits[i].date_end %></td>
+                                <td><%= credits[i].date_start %></td>
                                 <td></td>
                             </tr>
                         </tbody>
+                            <% } %>
                     </table>
+                    <% } %>
                 </div>
             </div>
         </div>
