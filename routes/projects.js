@@ -3,7 +3,6 @@ var router = express.Router();
 var request = require('request');
 
 router.get('/', function(req, res, next) {
-    res.render('projects/index', {user: req.user});
 
     request('http://localhost:3000/api/projects', function (error, response, body) {
     if (!error && response.statusCode == 200) {
