@@ -27,9 +27,8 @@ router.post('/user/create', function(req, res, next) {
   const lastName = req.body.lastName;
   const email = req.body.email;
   user.create(username, password, firstName, lastName, email)
-    .then(() => res.status(200).send())
+    .then(() => res.redirect(307, '/auth/login'))
     .catch((err) => res.status(500).send(err));
-  res.redirect('/')
 });
 
 router.post('/edit/:id_user', function(req, res, next) {
@@ -162,7 +161,7 @@ router.post('/reviews/create', function(req, res, next) {
   const comment = req.body.comment;
   review.create(date.toString(), from, to, rating, comment)
     .then(() => res.status(200).send())
-    .catch((err) => {console.log(err);res.status(500).send(err)});
+    .catch((err) => res.status(500).send(err));
 });
 
 router.get('/reviews/all/:user', function(req, res, next) {
