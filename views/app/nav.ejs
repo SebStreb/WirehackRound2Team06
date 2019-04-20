@@ -15,13 +15,21 @@
                 <a class="nav-link" href="/credits">Credits</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/users/create">Register</a>
-            </li>
+            <% if (locals.user) { %>
+              <li class="nav-item">
+                  <a class="nav-link" href="/user"><%= locals.user.username %></a>
+              </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/auth/create">Login</a>
-            </li>
+              <!-- TODO disconnect -->
+            <% } else { %>
+              <li class="nav-item">
+                  <a class="nav-link" href="/users/create">Register</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" href="/auth/create">Login</a>
+              </li>
+            <% } %>
          </ul>
     </div>
 </nav>
