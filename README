@@ -1,0 +1,7 @@
+How to launch the projet :
+
+`npm install`
+`node init_db.js`
+`npm start`
+
+and the website is at localhost:3000.
