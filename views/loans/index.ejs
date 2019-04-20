@@ -15,7 +15,12 @@
                         <a href="/loans/create" class="btn btn-primary float-right">Add loan</a>
                     </h1>
 
-                    <table class="table table-hover">
+                    <% if(proposals.length == 0) {%>
+                        <p> Message </p>
+                    <% } %>
+                    <% if(proposals.length != 0) {%>
+                        <% proposals %>
+                        <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">Status</th>
@@ -26,72 +31,23 @@
                                 <th></th>
                             </tr>
                         </thead>
-
                         <tbody>
+                            <% for(var i=0; i < proposals.length; i++) {%>
                             <tr>
                                 <td><span class="badge badge-success">Accepted</span></td>
-                                <td>500€</td>
-                                <td>10%</td>
-                                <td>20/10/2011</td>
-                                <td>20/10/2010</td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td><span class="badge badge-danger">Expired</span></td>
-                                <td>600€</td>
-                                <td>10%</td>
-                                <td>20/10/2011</td>
-                                <td>20/10/2010</td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td><span class="badge badge-danger">Expired</span></td>
-                                <td>700€</td>
-                                <td>10%</td>
-                                <td>20/10/2011</td>
-                                <td>20/10/2010</td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td><span class="badge badge-warning">Waiting</span></td>
-                                <td>100€</td>
-                                <td>10%</td>
-                                <td>20/10/2020</td>
+                                <td><% proposals[i].amount %>€</td>
+                                <td><% proposals[i].interest %>%</td>
+                                <td><% proposals[i].deadline%></td>
                                 <td>20/10/2010</td>
                                 <td>
                                     <button type="button" name="button" class="btn btn-info">Edit</button>
                                     <button type="button" name="button" class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
-
-                            <tr>
-                                <td><span class="badge badge-warning">Waiting</span></td>
-                                <td>200€</td>
-                                <td>10%</td>
-                                <td>20/10/2020</td>
-                                <td>20/10/2010</td>
-                                <td>
-                                    <button type="button" name="button" class="btn btn-info">Edit</button>
-                                    <button type="button" name="button" class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td><span class="badge badge-warning">Waiting</span></td>
-                                <td>500€</td>
-                                <td>10%</td>
-                                <td>20/10/2020</td>
-                                <td>20/10/2010</td>
-                                <td>
-                                    <button type="button" name="button" class="btn btn-info">Edit</button>
-                                    <button type="button" name="button" class="btn btn-danger">Delete</button>
-                                </td>
-                            </tr>
+                            <% } %>
                         </tbody>
-                    </table>
+                        </table>
+                    <% } %>
                 </div>
             </div>
         </div>

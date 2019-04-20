@@ -1,8 +1,17 @@
 var express = require('express');
 var router = express.Router();
+var request = require('request');
 
 router.get('/', function(req, res, next) {
-    res.render('loans/index');
+	console.log("Trying")
+	request('http://localhost:3000/api/proposal/'+req.user.id, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+        res.render('loans/index', {proposals:response.body});
+     }
+     if(error){
+     	console.log(error)
+     }
+})
 });
 
 router.get('/show/:id', function(req, res, next) {
