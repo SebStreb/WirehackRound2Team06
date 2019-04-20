@@ -7,35 +7,35 @@
     <body>
         <% include ../app/nav %>
 
-        <div class="container-fluid">
+        <div class="container">
             <div class="row justify-content-md-center">
                 <div class="col-12">
                     <h1>
-                        Loans
-                        <a href="/loans/create" class="btn btn-primary float-right">Add loan</a>
+                        My projects
+                        <a href="/projects/create" class="btn btn-primary float-right">Create a project</a>
                     </h1>
 
-                    <% if(proposals.length == 0) {%>
-                        <p> Message. </p>
+                    <% if(projects.length == 0) {%>
+                        <div class="alert alert-secondary" role="alert">
+                            No data to display.
+                        </div>
                     <% } %>
-                    <% if(proposals.length != 0) {%>
+                    <% if(projects.length != 0) {%>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">Status</th>
+                                    <th></th>
+                                    <th scope="col">Title</th>
                                     <th scope="col">Amount</th>
-                                    <th scope="col">Interest rate</th>
-                                    <th scope="col">Deadline</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% for(var i=0; i < proposals.length; i++) {%>
                                 <tr>
-                                    <td><span class="badge badge-success">Accepted</span></td>
-                                    <td><%= proposals[i].amount %>€</td>
-                                    <td><%= proposals[i].interest %>%</td>
-                                    <td><%= proposals[i].finalDate%></td>
+                                    <td><span class="badge badge-success">Low risk</span></td>
+                                    <td><%= projects[i].title %>€</td>
+                                    <td><%= projects[i].amount %>%</td>
                                     <td>
                                         <button type="button" name="button" class="btn btn-info">Edit</button>
                                         <button type="button" name="button" class="btn btn-danger">Delete</button>

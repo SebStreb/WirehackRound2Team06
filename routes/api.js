@@ -218,7 +218,8 @@ router.post('/project/create', function(req, res, next) {
   const image_url = req.body.image;
   const project_url = req.body.url;
   const user = req.body.user_id;
-  project.create(demand, description, image_url, project_url, user)
+  const title = req.body.title;
+  project.create(demand, description, image_url, project_url, user, title)
     .then(() => res.redirect('/projects'))
     .catch((err) => res.status(500).send(err));
 });

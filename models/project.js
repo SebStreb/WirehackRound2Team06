@@ -8,6 +8,7 @@ class Project {
     const sql = `
       CREATE TABLE IF NOT EXISTS project (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
         demand REAL NOT NULL,
         description TEXT NOT NULL,
         image_url TEXT NOT NULL,
@@ -19,8 +20,8 @@ class Project {
     return this.db.run(sql);
   }
 
-  create(demand, description, image_url, project_url, user_id) {
-    const sql = `INSERT INTO project (demand, description, image_url, project_url, user_id) VALUES (?, ?, ?, ?, ?)`
+  create(demand, description, image_url, project_url, user_id, title) {
+    const sql = `INSERT INTO project (demand, description, image_url, project_url, user_id, title) VALUES (?, ?, ?, ?, ?, ?)`
     return this.db.run(sql, [demand, description, image_url, project_url, user_id]);
   }
 

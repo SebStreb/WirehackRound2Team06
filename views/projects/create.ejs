@@ -14,9 +14,16 @@
                         <fieldset>
                             <legend>Create new project</legend>
 
+                            <input type="hidden" name="user_id" value="<%= user.id %>">
+
                             <div class="form-group">
-                                <label for="demand">Amount needed</label>
-                                <input type="number" class="form-control" id="demand" name="demand" placeholder="Enter the amount">
+                                <label for="image">Image</label>
+                                <input type="text" class="form-control" id="image" name="image" placeholder="Enter image URL">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
                             </div>
 
                             <div class="form-group">
@@ -24,19 +31,17 @@
                                 <textarea type="textarea" class="md-textarea form-control" rows=5 id="description" name="description" placeholder="Enter description"></textarea>
                             </div>
 
-														<div class="form-group">
-                                <label for="image">Image</label>
-                                <input type="text" class="form-control" id="image" name="image" placeholder="Enter image URL">
+                            <div class="form-group">
+                                <label for="demand">Amount needed</label>
+                                <input type="number" class="form-control" id="demand" name="demand" placeholder="Enter amount">
                             </div>
 
-														<div class="form-group">
+							<div class="form-group">
                                 <label for="url">Website URL</label>
                                 <input type="text" class="form-control" id="url" name="url" placeholder="If you have a website for the project, add it">
                             </div>
 
-														<input type="hidden" name="user_id" value="<%= user.id %>">
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Create</button>
                         </fieldset>
                     </form>
 
