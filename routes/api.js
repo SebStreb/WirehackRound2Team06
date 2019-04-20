@@ -32,15 +32,6 @@ router.post('/user/create', function(req, res, next) {
   res.redirect('/')
 });
 
-// NOT USED ANYMORE
-router.post('/user/connect', function(req, res) {
-  const username = req.body.username;
-  const password = req.body.password;
-  user.connect(username, password)
-    .then(() => res.redirect('/'))
-    .catch((err) => res.status(500).send(err)) //TODO error
-});
-
 router.post('/edit/:id_user', function(req, res, next) {
   res.render('NotImplemented');
 });
@@ -123,13 +114,13 @@ router.get('/proposal/:id', function(req, res, next) {
 });
 
 router.post('/proposal/create', function(req, res, next) {
-  const date = req.body.endDate;
-  const user = req.body.userId;
+  const date = req.body.deadline;
+  const user = req.user.id;
   const amount = req.body.amount;
-  const interest = req.body.interest;
+  const interest = req.body.interest_rate;
   proposal.create(user, amount, interest, date)
-    .then(() => res.status(200).send())
-    .catch((err) => res.status(500).send(err));
+    .then(() => res.status(200).redirect('/loans'))
+    .catch((err) => {console.error(err); res.status(500).send(err)});
 });
 
 router.get('/proposal/best/:amount', function(req, res, next) {
