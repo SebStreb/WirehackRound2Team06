@@ -52,7 +52,7 @@ class User {
           passwordUtils.comparePassword(password, result.password, (err, match) => {
             if (err) return reject("Could not compare password: " + err.message);
             else if (!match) return reject("Wrong password for user: " + username);
-            else return resolve();
+            else return resolve(result);
           });
         })
         .catch((err) => reject("Could not find user " + username));

@@ -1,5 +1,8 @@
 var express = require('express');
+var passport = require('passport');
 var router = express.Router();
+
+router.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/auth/create' }));
 
 router.get('/create', function(req, res, next) {
     res.render('auth/create');

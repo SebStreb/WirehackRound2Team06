@@ -32,11 +32,10 @@ router.post('/user/create', function(req, res, next) {
   res.redirect('/')
 });
 
+// NOT USED ANYMORE
 router.post('/user/connect', function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
-  console.log(username)
-  console.log(password)
   user.connect(username, password)
     .then(() => res.redirect('/'))
     .catch((err) => res.status(500).send(err)) //TODO error
