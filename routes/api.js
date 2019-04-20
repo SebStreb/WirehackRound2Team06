@@ -4,6 +4,8 @@ const Database = require('../models/db_connect');
 const User = require('../models/user');
 const Loan = require('../models/loan');
 const Review = require('../models/review');
+const Payment = require('../models/payment');
+const Project = require('../models/project');
 const Proposal = require('../models/proposal');
 
 const router = express.Router();
@@ -12,6 +14,8 @@ const db = new Database('./db.sqlite');
 const user = new User(db);
 const loan = new Loan(db);
 const review = new Review(db);
+const payment = new Payment(db);
+const project = new Project(db);
 const proposal = new Proposal(db);
 
 // Users
@@ -185,5 +189,38 @@ router.delete('/reviews/delete/:id', function(req, res, next) {
     res.render('NotImplemented');
 });
 
+// Payment
+
+// Project
+
+router.get('/projects', function(req, res, next) {
+  project.all()
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
+});
+
+router.get('/project/:project_id', function(req, res, next) {
+  project.get(req.params.project_id)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
+});
+
+router.get('/project/all/:user', function(req, res, next) {
+  const user = req.params.user;
+  project.from_user(user)
+    .then((result) => res.status(200).send(result))
+    .catch((err) => res.status(500).send(err));
+});
+
+router.post('/project/create', function(req, res, next) {
+  const demand = req.body.demand;
+  const description = req.body.description;
+  const image_url = req.body.image;
+  const project_url = req.body.url;
+  const user = req.body.user_id;
+  review.create(demand, description, image_url, project_url, user)
+    .then(() => res.status(200).send())
+    .catch((err) => res.status(500).send(err));
+});
 
 module.exports = router;
