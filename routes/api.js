@@ -218,8 +218,8 @@ router.post('/project/create', function(req, res, next) {
   const image_url = req.body.image;
   const project_url = req.body.url;
   const user = req.body.user_id;
-  review.create(demand, description, image_url, project_url, user)
-    .then(() => res.redirect('projects/create'))
+  project.create(demand, description, image_url, project_url, user)
+    .then(() => res.redirect('/projects'))
     .catch((err) => res.status(500).send(err));
 });
 
