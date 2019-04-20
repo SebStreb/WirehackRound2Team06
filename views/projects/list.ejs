@@ -33,9 +33,17 @@
                             <tbody>
                                 <% for(var i=0; i < projects.length; i++) {%>
                                 <tr>
+                                    <% if(projects[i].risk == 1) {%>
                                     <td><span class="badge badge-success">Low risk</span></td>
-                                    <td><%= projects[i].title %>€</td>
-                                    <td><%= projects[i].amount %>%</td>
+                                <% } %>
+                                <% if(projects[i].risk == 2) {%>
+                                    <td><span class="badge badge-warning">Medium risk</span></td>
+                                <% } %>
+                                <% if(projects[i].risk == 3) {%>
+                                    <td><span class="badge badge-danger">High risk</span></td>
+                                <% } %>
+                                    <td><%= projects[i].title %></td>
+                                    <td><%= projects[i].demand %>€</td>
                                     <td>
                                         <button type="button" name="button" class="btn btn-info">Edit</button>
                                         <button type="button" name="button" class="btn btn-danger">Delete</button>
