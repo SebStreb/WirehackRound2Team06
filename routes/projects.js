@@ -5,4 +5,8 @@ router.get('/', function(req, res, next) {
     res.render('projects/index')
 });
 
+router.get('/create', function(req, res, next) {
+    res.render('projects/create')
+});
+
 module.exports = router;

@@ -20,6 +20,23 @@ router.get('/', function(req, res, next) {
 })
 });
 
+router.get('/showCredits', function(req, res, next) {
+    if(!req.user)
+		res.render("Please connect")
+	request('http://localhost:3000/api/proposals', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+    	console.log(response.body)
+        res.render('credits/show_credits', {
+        	credits:JSON.parse(response.body),
+        	user:req.user
+        });
+     }
+     if(error){
+     	console.log(error)
+     }
+})
+});
+
 router.get('/show/:id', function(req, res, next) {
     res.render('credits/show');
 });
