@@ -12,11 +12,11 @@
                 <div class="col-6">
                     <form method="POST" action="/api/project/create">
                         <fieldset>
-                            <legend>Login</legend>
+                            <legend>Create new project</legend>
 
                             <div class="form-group">
-                                <label for="demand">Demand</label>
-                                <input type="number" class="form-control" id="demand" name="demand" placeholder="Enter your demand">
+                                <label for="demand">Amount needed</label>
+                                <input type="number" class="form-control" id="demand" name="demand" placeholder="Enter the amount">
                             </div>
 
                             <div class="form-group">
@@ -36,7 +36,7 @@
 
 														<input class="hidden" name="user_id" value="<%= user.id %>">
 
-                            <button type="submit" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </fieldset>
                     </form>
 

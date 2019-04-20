@@ -196,7 +196,7 @@ router.delete('/reviews/delete/:id', function(req, res, next) {
 router.get('/projects', function(req, res, next) {
   project.all()
     .then((result) => res.status(200).send(result))
-    .catch((err) => res.status(500).send(err));
+    .catch((err) => {console.log(err); res.status(500).send(err)});
 });
 
 router.get('/project/:project_id', function(req, res, next) {
