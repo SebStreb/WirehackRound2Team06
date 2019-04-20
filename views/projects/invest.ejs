@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <% include ../app/head %>
+    </head>
+
+    <body>
+        <% include ../app/nav %>
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-6">
+                    <form method="POST" action="/credits/apply">
+                        <fieldset>
+                            <legend>Invest in a project</legend>
+
+														<input type="hidden" name="loaner" value="<%= user.id %>">
+
+														<input type="hidden" name="proposal_id" value="<%= proposal.id %>">
+
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="number" class="form-control disabled" id="amount" name="amount" value="<%= project.demand %>">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="interest_rate">Interest rate</label>
+                                <input type="number" class="form-control disabled" id="interest_rate" name="interest_rate" value="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="deadline">Deadline</label>
+                                <input type="date" class="form-control disabled" id="deadline" name="deadline" value="">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success">Create</button>
+                                <a href="/loans" class="btn btn-light">Cancel</a>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <% include ../app/script %>
+    </body>
+</html>
