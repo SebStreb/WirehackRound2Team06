@@ -10,7 +10,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/create', function(req, res, next) {
-    res.render('auth/create');
+  res.render('auth/create');
 });
 
 router.post('/create', function(req, res, next) {

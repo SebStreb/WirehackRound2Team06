@@ -13,10 +13,10 @@ const loan = new Loan(db);
 const payment = new Payment(db);
 const review = new Review(db);
 
-user.createTable().catch((err) => console.error("user" + err));
-proposal.createTable().catch((err) => console.error("proposal" + err));
-loan.createTable().catch((err) => console.error("loan" + err));
-payment.createTable().catch((err) => console.error("paymen" + err));
-review.createTable().catch((err) => console.error("review" + err));
+user.createTable().catch((err) => console.error("user: " + err));
+proposal.createTable().catch((err) => console.error("proposal: " + err));
+loan.createTable().catch((err) => console.error("loan: " + err));
+payment.createTable().catch((err) => console.error("payment: " + err));
+review.createTable().catch((err) => console.error("review: " + err));
 
 //user.create("admin", "admin", "Sébastien", "Strebelle", "test@gmail.com")
