@@ -79,7 +79,7 @@ router.post('/invest', function(req, res, next) {
         .then(() => res.redirect('/loans'))
         .catch((err) => res.status(500).send(err));
     })
-    .catch((err) => {console.error(error);res.status(500).send(err)});
+    .catch((err) => {console.error(err);res.status(500).send(err)});
 });
 
 module.exports = router;
